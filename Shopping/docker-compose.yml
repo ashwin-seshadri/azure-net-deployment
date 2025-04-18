@@ -1,0 +1,14 @@
+services:
+  shopping.api:
+    image: ${DOCKER_REGISTRY-}shoppingapi
+    build:
+      context: Shopping.API
+      dockerfile: Dockerfile
+
+  shopping.client:
+    image: ${DOCKER_REGISTRY-}shoppingclient
+    build:
+      context: ShoppingClient
+      dockerfile: Dockerfile
+  shopping.db:
+    image: mongo
