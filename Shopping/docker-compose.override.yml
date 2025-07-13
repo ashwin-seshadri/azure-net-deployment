@@ -1,4 +1,15 @@
 services:
+  shopping.client:
+    container_name: shoppingclient
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "ShoppingAPIUrl=http://shoppingapi:8000"
+    depends_on:
+      - shopping.api
+    ports:
+      - "8001:8080"
+
   shopping.api:
     container_name: shoppingapi
     environment:
@@ -10,20 +21,6 @@ services:
     ports:
       - "8000:8080"
 
-  shopping.client:
-    container_name: shoppingclient
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - "ShoppingAPIUrl=http://shoppingapi:8000/" 
-    depends_on:
-      - shopping.db
-      - shopping.api
-    ports:
-      - "8001:8080"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
   shopping.db:
     container_name: shoppingdb
     restart: always
