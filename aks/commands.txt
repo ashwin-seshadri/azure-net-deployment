@@ -96,6 +96,20 @@ kubectl config get-contexts
 kubectl config current-context
 kubectl config use-context gcpcluster-k8s-1
 	Switched to context "gcpcluster-k8s-1"
+
+Troubleshooting
+
+kubectl describe pod/shoppingclient-deployment-6d7d995b9b-fh7d5
+  Describe pod "pod/shoppingclient-deployment-6d7d995b9b-fh7d5" to look for information about its creation
+kubectl logs pod/shoppingclient-deployment-6d7d995b9b-fh7d5
+  Check logs in pod "pod/shoppingclient-deployment-6d7d995b9b-fh7d5" to troubleshoot
+kubectl exec -it pod/shoppingclient-deployment-6d7d995b9b-fh7d5 -- sh
+  Troubleshoot pod "pod/shoppingclient-deployment-6d7d995b9b-fh7d5" and run shell command
+$ printenv
+  Print environment variables to troubleshoot connection issues in the shell terminal
+$ exit 
+  Close the shell terminal
+  
 --
 Deploy microservices to AKS
 
